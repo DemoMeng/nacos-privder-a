@@ -24,7 +24,8 @@ public class AccessInterceptor implements HandlerInterceptor {
 
         if(handler instanceof HandlerMethod){
             String userId = request.getParameter("GATEWAY_USER_ID");
-            if(StringUtils.isEmpty(userId)){
+            String feignFlag = request.getParameter("FEIGN_AGENT");
+            if(StringUtils.isEmpty(userId)&&StringUtils.isEmpty(feignFlag)){
                 returnJson(response,"{\"code\":403,\"msg\":\"禁止直接访问服务\"}");
                 return false;
             }
