@@ -1,0 +1,8 @@
+server:
+  port: 99990
+  tomcat:
+    basedir: /usr/local #配置临时目录
+
+spring:
+  application:
+    name: nacos-provider-a

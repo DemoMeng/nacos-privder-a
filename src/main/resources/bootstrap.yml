@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        namespace: @nacosNameSpace@
+        prefix: nacos-provider-a
+        file-extension: yaml
+        server-addr: @nacosAddress@
+      discovery:
+        namespace: @nacosNameSpace@
+        server-addr: @nacosAddress@
+  profiles:
+    active: @profileActive@
