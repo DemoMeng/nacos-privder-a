@@ -1,0 +1,11 @@
+version: '2'
+services:
+  nacos-gateway:
+    build:
+      context: ./
+    restart: always
+    ports:
+      - 9999:9999
+    container_name: nacos-providerA-by-docker-compose-build
+    hostname: nacos-providerA-by-docker-compose-build
+    image: nacos-providerA-by-docker-compose-build
