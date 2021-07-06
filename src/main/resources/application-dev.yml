@@ -6,3 +6,35 @@ server:
 spring:
   application:
     name: nacos-provider-a
+
+
+
+
+
+#配置swagger-ui 密码登陆
+swagger:
+  production: false
+  basic:
+    enable: true
+    username: mqz
+    password: mengqizhang
+  #自定义配置，是否开启swagger
+  enabled: true
+  info:
+    title: 在线接口文档
+    description: 蒙大拿
+    url: http://localhost:2000/doc.html
+    contact: https://github.com/DemoMeng
+    version: 1.0
+
+
+jwt:
+  secret: Mars-Cloud
+  key:
+    userId: USER_ID
+    token: TOKEN
+    roleIdList: ROLE_ID_LIST
+
+
+
+

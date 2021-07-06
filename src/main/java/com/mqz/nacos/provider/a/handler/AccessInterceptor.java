@@ -1,5 +1,7 @@
 package com.mqz.nacos.provider.a.handler;
 
+import com.mqz.nacos.provider.a.common.Constants;
+import com.mqz.nacos.provider.a.thread.LocalContext;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,54 +18,36 @@ import java.io.PrintWriter;
  * @since 2020/11/10
  */
 public class AccessInterceptor implements HandlerInterceptor {
+
+
     /**
-     * token过滤
-     * */
+     * TODO  token过滤
+     * 每个模块中需要有个token拦截器，因为所有的请求被网关模块解析了，网关模块主要就是把token解析，解析出来的信息重新拼接到url上，
+     * 然后每个模块就从url获取参数，也就是如下： request.getParameter(CommonConstants.COMPANY_ID)
+     * 然后再把这些参数放到ThreadLocal中，问：是不是也能放到request中？
+     *
+     * ThreadLocal：解决的高并发下的问题，本地线程，每个线程独享一个ThreadLocal，但是如果使用不当（没有调用 ThreadLocal.remove的方法），可能出现内存泄漏的情况！
+     *
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-
-        if(handler instanceof HandlerMethod){
-            String userId = request.getParameter("GATEWAY_USER_ID");
-            String feignFlag = request.getParameter("FEIGN_AGENT");
-            if(StringUtils.isEmpty(userId)&&StringUtils.isEmpty(feignFlag)){
-                returnJson(response,"{\"code\":403,\"msg\":\"禁止直接访问服务\"}");
-                return false;
-            }
-//            String token = request.getHeader("token");
-//            if(StringUtils.isEmpty(token)){
-//                returnJson(response,"{\"code\":433,\"msg\":\"token为空\"}");
-//                //throw new BusinessException(ResponseEnum.WITHOUT_TOKEN);
-//                return false;
-//            }
-//                String jwtKey = CommonConstants.Admin.System.USER_JWT_+token;
-//                String jwt = (String) RedisService.get(jwtKey);
-//                if(StringUtils.isEmpty(jwt)){
-//                    //returnJson(response,"{\"code\":434,\"msg\":\"token不存在\"}");
-//                    //throw new BusinessException(ResponseEnum.TOKEN_NOT_EXIST);
-//                    //return false;
-//                }
-            return true;
+        //维护网关解析的变量到本地线程
+        String userId = request.getParameter("GATEWAY_USER_ID");
+        if(!StringUtils.isEmpty(userId)){
+            LocalContext.add(Constants.GATEWAY_KEY.USER_ID,userId);
         }
+        String userName = request.getParameter("GATEWAY_USER_NAME");
+        if(!StringUtils.isEmpty(userName)){
+            LocalContext.add(Constants.GATEWAY_KEY.USER_NAME,userName);
+        }
+        //链路追踪维护
         return true;
     }
 
-    /**
-     * 返回json
-     * @param response
-     * @param json
-     */
-    private void returnJson(HttpServletResponse response, String json){
-        PrintWriter writer = null;
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=utf-8");
-        try {
-            writer = response.getWriter();
-            writer.print(json);
-        } catch (IOException e) {
-        } finally {
-            if (writer != null){
-                writer.close();
-            }
-        }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        //防止OOM
+        LocalContext.remove();
     }
 }

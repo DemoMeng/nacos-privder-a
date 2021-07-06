@@ -13,7 +13,7 @@ import java.util.List;
  * @since 2020/4/20
  */
 @Configuration
-public class MyWebConfiguration implements WebMvcConfigurer {
+public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
