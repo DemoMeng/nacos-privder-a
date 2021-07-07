@@ -1,15 +1,12 @@
 package com.mqz.nacos.provider.a.handler;
 
+import com.mqz.mars.base.thread.LocalContext;
 import com.mqz.nacos.provider.a.common.Constants;
-import com.mqz.nacos.provider.a.thread.LocalContext;
 import org.springframework.util.StringUtils;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * @author mqz

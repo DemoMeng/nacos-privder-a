@@ -6,6 +6,18 @@ server:
 spring:
   application:
     name: nacos-provider-a
+  redis:
+    database: 0
+    host: 192.168.2.11
+    port: 6379
+    password: root
+    jedis:
+      pool:
+        max-active: 200
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 0
+    timeout: 10000s
 
 
 
@@ -17,13 +29,13 @@ swagger:
   basic:
     enable: true
     username: mqz
-    password: mengqizhang
+    password: mqz
   #自定义配置，是否开启swagger
   enabled: true
   info:
-    title: 在线接口文档
+    title: 提供方-在线接口文档
     description: 蒙大拿
-    url: http://localhost:2000/doc.html
+    url: http://localhost:9999/doc.html
     contact: https://github.com/DemoMeng
     version: 1.0
 
@@ -34,6 +46,10 @@ jwt:
     userId: USER_ID
     token: TOKEN
     roleIdList: ROLE_ID_LIST
+
+
+
+
 
 
 

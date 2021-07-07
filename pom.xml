@@ -23,6 +23,7 @@
         <snakeyaml.version>1.28</snakeyaml.version>
         <mars.swagger.version>0.0.1</mars.swagger.version>
         <mars.base.version>0.0.1</mars.base.version>
+        <mars.redis.version>0.0.1</mars.redis.version>
     </properties>
     <dependencies>
         <dependency>
@@ -81,6 +82,15 @@
             <artifactId>mars-base</artifactId>
             <version>${mars.base.version}</version>
         </dependency>
+
+        <!-- 公共依赖 mars-redis ： -->
+        <dependency>
+            <groupId>com.mqz.mars.redis</groupId>
+            <artifactId>mars-redis</artifactId>
+            <version>${mars.redis.version}</version>
+        </dependency>
+
+
 
     </dependencies>
 

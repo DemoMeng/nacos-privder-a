@@ -21,10 +21,10 @@ import java.io.Serializable;
 public class UserLoginDTO implements Serializable {
 
     //TODO 非空校验
-    @ApiModelProperty(value = "登陆账号",example = "13128507506",dataType = "String")
+    @ApiModelProperty(value = "登陆账号",required = true,example = "13128507506",dataType = "String")
     private String account;
 
-    @ApiModelProperty(value = "密码",example = "123456",dataType = "String")
+    @ApiModelProperty(value = "密码",required = true,example = "123456",dataType = "String")
     private String password;
 
 
