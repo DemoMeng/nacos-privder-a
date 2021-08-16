@@ -1,5 +1,7 @@
 package com.mqz.nacos.provider.a.web;
 
+
+import com.mqz.mars.validation.exceptions.ParamValidException;
 import com.mqz.nacos.provider.a.common.WebRequestMapping;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,6 +31,9 @@ public class FeignHttpController {
     @ApiOperation(value = "提供feign调用接口")
     public String index(){
         log.info("Nacos客户端[nacos-provider-a:节点a]收到请求");
+        if(true){
+            throw new ParamValidException("[nacos-provider-a]抛出了异常");
+        }
         return String.format("Nacos客户端[nacos-provider-a:节点a]:返回了数据");
     }
 

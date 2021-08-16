@@ -24,8 +24,24 @@
         <mars.swagger.version>0.0.1</mars.swagger.version>
         <mars.base.version>0.0.1</mars.base.version>
         <mars.redis.version>0.0.1</mars.redis.version>
+        <mars.validation.version>0.0.1</mars.validation.version>
     </properties>
     <dependencies>
+
+
+        <dependency>
+            <groupId>com.mqz.mars.validation</groupId>
+            <artifactId>mars-validation</artifactId>
+            <version>${mars.validation.version}</version>
+        </dependency>
+
+        <!-- sba client-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>

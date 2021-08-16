@@ -19,6 +19,31 @@ spring:
         min-idle: 0
     timeout: 10000s
 
+  boot:
+    admin:
+      client:
+        url: http://localhost:20000
+        username: mqz
+        password: mqz
+        instance:
+          prefer-ip: true
+          #service-url: http://localhost:9999
+    #  security:
+    #    user:
+    #      name: "mqz"
+    #      password: "mqz"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    logfile:
+      external-file: log/systemLog.log
+
+
 
 
 
