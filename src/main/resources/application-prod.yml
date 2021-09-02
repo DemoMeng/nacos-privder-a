@@ -1,8 +1,90 @@
 server:
-  port: 99990
+  port: 9998
   tomcat:
     basedir: /usr/local #配置临时目录
 
 spring:
   application:
     name: nacos-provider-a
+  redis:
+    database: 0
+    host: 192.168.2.11
+    port: 6379
+    password: root
+    jedis:
+      pool:
+        max-active: 200
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 0
+    timeout: 10000s
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:20000
+        username: mqz
+        password: mqz
+        instance:
+          prefer-ip: true
+          #service-url: http://localhost:9999
+    #  security:
+    #    user:
+    #      name: "mqz"
+    #      password: "mqz"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    logfile:
+      external-file: log/systemLog.log
+
+
+
+knife4j:
+  # 开启增强配置
+  enable: true
+  #开启Swagger的Basic认证功能,默认是false
+  basic:
+    enable: true
+    username: mqz
+    password: mengqizhang
+  setting:
+    #    #自定义主页
+    #    enableHomeCustom: true
+    #    homeCustomLocation: classpath:resources/home/welcome.md
+    #
+    #自定义footer
+    enableFooter: false
+    enableFooterCustom: true
+    footerCustomContent: Copyright  2017-2021 [蒙大拿](https://gitee.com/DemoMeng)
+
+swagger:
+  #自定义配置，是否开启swagger
+  enabled: true
+  info:
+    title: 提供方-在线接口文档
+    description: 蒙大拿
+    url: http://localhost:9999/doc.html
+    contact: https://github.com/DemoMeng
+    version: 1.0
+
+
+jwt:
+  secret: Mars-Cloud
+  key:
+    userId: USER_ID
+    token: TOKEN
+    roleIdList: ROLE_ID_LIST
+
+
+
+
+
+
+
+

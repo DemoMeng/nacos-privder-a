@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 青网科技集团 版权所有 © Copyright 2012<br>
+ *  版权所有 © Copyright 2012<br>
  *
  * @Author： 蒙大拿
  * @Date：2021/7/7 9:53 上午
